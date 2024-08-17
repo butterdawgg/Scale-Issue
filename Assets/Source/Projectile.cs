@@ -47,12 +47,23 @@ public class Projectile : MonoBehaviour
             hitVFX.GetComponent<Sticker>().SetSticker(hit.transform, hit.point);
 
             if (isFriendly)
-            { 
-                
+            {
+                try
+                {
+                    Enemy enemy = hit.collider.gameObject.GetComponentInParent<Enemy>();
+                    enemy.Health -= damage;
+                }
+                catch (System.NullReferenceException)
+                {
+                    
+                }
             }
             else
             {
-
+                if(hit.transform == Player.Instance.transform)
+                {
+                    Player.Instance.Health -= damage;
+                }
             }
 
             OnDeath();
