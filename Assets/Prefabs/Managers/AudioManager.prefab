@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7677492740853397021
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5497072329312449145}
+  - component: {fileID: 1154597187031034885}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5497072329312449145
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7677492740853397021}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1154597187031034885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7677492740853397021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 557adbeafa394444882a48d4ffbef38d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: ButtonHover
+    clip: {fileID: 8300000, guid: 0cff70318636d2a459333bef909f8359, type: 3}
+    volume: 0.25
+    source: {fileID: 0}
+  - name: ButtonClick
+    clip: {fileID: 8300000, guid: 89ae561daef3c4f41a0bf24fdd0e3ea6, type: 3}
+    volume: 0.25
+    source: {fileID: 0}
+  music:
+  - name: soundtrack1
+    clip: {fileID: 8300000, guid: e344976cce8546d468d2bba37b3b765e, type: 3}
+    volume: 1
+    source: {fileID: 0}
+  - name: soundtrack2
+    clip: {fileID: 8300000, guid: 462bc1c7c3566654886fe20d87dd63c5, type: 3}
+    volume: 1
+    source: {fileID: 0}
+  - name: soundtrack3
+    clip: {fileID: 8300000, guid: 0247427686c3d694c9f8b97ffea3deb9, type: 3}
+    volume: 1
+    source: {fileID: 0}
+  - name: soundtrack4
+    clip: {fileID: 8300000, guid: b838e8f033dc59245923fd2a91281287, type: 3}
+    volume: 1
+    source: {fileID: 0}
+  - name: soundtrack5
+    clip: {fileID: 8300000, guid: 537a1c8fab27667499739ee681445a15, type: 3}
+    volume: 1
+    source: {fileID: 0}
