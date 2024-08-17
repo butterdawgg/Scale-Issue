@@ -1,11 +1,15 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class Gun : MonoBehaviour
 {
     [Header("Stats")]
     [SerializeField] private float damage;
     [SerializeField] private float cooldown;
+    [SerializeField] private float spread;
+    [SerializeField] private float projectileVelocity;
+    [SerializeField] private float projectileLifetime;
     [Header("Gun Movement")]
     [SerializeField] private Transform gunPivot;
     [SerializeField] private Transform activePoint;
@@ -22,9 +26,6 @@ public class Gun : MonoBehaviour
     [SerializeField] private LayerMask checkLayerMask;
     [SerializeField] private LayerMask projectileLayerMask;
 
-    public Transform LookPoint { get; set; }
-    public bool CanShoot { get; set; }
-
     private bool isShooting;
 
     private void Update()
@@ -32,9 +33,11 @@ public class Gun : MonoBehaviour
         if (Time.timeScale <= 0f)
             return;
 
-        Vector3 lookPoint = Vector3.zero;
+        Vector3 checkPoint = Player.Instance.LookPivot.position;
+        Vector3 checkDirection = Player.Instance.LookPivot.forward;
+        Vector3 lookPoint = Player.Instance.LookPoint;
 
-        if (Physics.SphereCast(LookPoint.position, checkRadius, LookPoint.forward,
+        if (Physics.SphereCast(checkPoint, checkRadius, checkDirection,
             out RaycastHit hit, checkDistance, checkLayerMask))
         {
             gunPivot.localPosition = Vector3.Lerp(gunPivot.localPosition,
@@ -46,7 +49,7 @@ public class Gun : MonoBehaviour
             return;
         }
 
-        activePoint.rotation = Quaternion.LookRotation(LookPoint.position +
+        activePoint.rotation = Quaternion.LookRotation(lookPoint +
             (activePoint.position - muzzlePoint.position) - activePoint.position, transform.up);
 
         if (isShooting)
@@ -58,7 +61,8 @@ public class Gun : MonoBehaviour
         gunPivot.localRotation = Quaternion.Lerp(gunPivot.localRotation,
             activePoint.localRotation, lerpK * Time.deltaTime);
 
-        if (CanShoot & Vector3.Angle(gunPivot.forward, activePoint.forward) < 5f)
+        if (Input.GetKeyDown(KeyCode.Mouse0) &&
+                Vector3.Angle(gunPivot.forward, activePoint.forward) < 5f)
             Shoot();
     }
 
@@ -71,7 +75,8 @@ public class Gun : MonoBehaviour
     {
         isShooting = true;
 
-        Projectile.Launch(projectile, muzzlePoint.position, muzzlePoint.forward, projectileLayerMask, maxDistance, damage);
+        Projectile.Launch(projectile, muzzlePoint.position, muzzlePoint.forward, projectileVelocity,
+            spread, projectileLifetime, projectileLayerMask, damage, true);
 
         float halfCooldown = cooldown * 0.5f;
 
