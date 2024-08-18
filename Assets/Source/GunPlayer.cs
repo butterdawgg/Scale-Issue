@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.VFX;
 
-public class Gun : MonoBehaviour
+public class GunPlayer : MonoBehaviour
 {
     [Header("Stats")]
     [SerializeField] private float damage;

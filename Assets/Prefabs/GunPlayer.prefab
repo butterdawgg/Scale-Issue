@@ -109,12 +109,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3573318757581522884}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35eb353e50a001c46b9db5fb078eba0c, type: 3}
+  m_Script: {fileID: 11500000, guid: c95eaf2a59686394e935a626cea27c2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
   cooldown: 0.1
-  spread: 1
+  spread: 2
   projectileVelocity: 50
   projectileLifetime: 1
   gunPivot: {fileID: 8471956230661888515}
@@ -130,9 +130,6 @@ MonoBehaviour:
   checkLayerMask:
     serializedVersion: 2
     m_Bits: 136
-  lookLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
   projectileLayerMask:
     serializedVersion: 2
     m_Bits: 136
