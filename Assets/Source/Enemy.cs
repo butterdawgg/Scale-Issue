@@ -80,6 +80,10 @@ public class Enemy : MonoBehaviour
         {
             //attack
             animator.SetTrigger("attack");
+            if(Physics.SphereCast(ray, 1f, out RaycastHit hit, attackDistance, targetLayerMask))
+            {
+                Debug.Log("hit!");
+            }
         }
 
         agent.SetDestination(Player.Instance.transform.position);
