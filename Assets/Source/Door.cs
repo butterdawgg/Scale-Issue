@@ -4,35 +4,44 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    [SerializeField] private float interactionRadius;
-    [SerializeField] private KeyCode interactionKey;
-    [SerializeField] private bool isInteractable;
-
-    private Animator animator;
+    [SerializeField] private Transform childDoor;
+    [Range(0, 1)] [SerializeField] private float lerpSpeed;
 
     private bool isActive = false;
-
-    private void Awake()
-    {
-        animator = GetComponentInChildren<Animator>();
-    }
+    private bool finishedAnimation = true;
 
     private void Update()
     {
-        if (!isInteractable)
+        if (finishedAnimation)
             return;
 
-        float distance = (Player.Instance.Position - transform.position).magnitude;
-        if (distance <= interactionRadius && Input.GetKeyUp(interactionKey))
+        if (isActive)
         {
-            //open \ close the door
-            animator.SetTrigger("activate");
-            isActive = !isActive;
+            childDoor.position = Vector3.Lerp(childDoor.position, Vector3.forward * 1.6f, lerpSpeed);
+
+            if(Mathf.Round(childDoor.position.x * 10) / 10 == 1.5f)
+            {
+                finishedAnimation = true;
+                childDoor.position = new Vector3(0, 0, 1.6f);
+                GetComponent<MeshCollider>().enabled = false;
+            }
+        }
+        else
+        {
+            GetComponent<MeshCollider>().enabled = true;
+            childDoor.position = Vector3.Lerp(childDoor.position, Vector3.zero, lerpSpeed);
+
+            if (Mathf.Round(childDoor.position.x * 10) / 10 == 0)
+            {
+                finishedAnimation = true;
+                childDoor.position = Vector3.zero;
+            }
         }
     }
 
-    public void SetInteractions(bool value)
+    public void ToggleActive()
     {
-        isInteractable = value;
+        isActive = !isActive;
+        finishedAnimation = false;
     }
 }

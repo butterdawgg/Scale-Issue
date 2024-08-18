@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EffectSetDoorInteractionState : EventEffect
+public class EffectSetButtonInteractionState : EventEffect
 {
-    [SerializeField] private Door door;
+    [SerializeField] private ButtonController button;
     [SerializeField] private bool setStateTo = true;
 
     public override void Perform()
     {
-        door.SetInteractions(setStateTo);
+        button.SetInteractions(setStateTo);
     }
 }
