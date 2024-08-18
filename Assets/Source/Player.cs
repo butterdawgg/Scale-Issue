@@ -27,12 +27,13 @@ public class Player : MonoBehaviour
     public Vector3 LookPoint { get; private set; }
     public Vector3 Position { get; private set; }
     public bool IsDefeated { get; private set; }
+    public bool IsActionLocked { get; set; }
 
     //private bool isDead;
 
     private CharacterController cc;
     private Camera cam;
-    private Gun gun;
+    private GunPlayer gun;
 
     private Vector3 velocity;
     private float lookPitch;
@@ -50,7 +51,7 @@ public class Player : MonoBehaviour
 
         cam = GetComponentInChildren<Camera>();
 
-        gun = GetComponentInChildren<Gun>();
+        gun = GetComponentInChildren<GunPlayer>();
         
         ControlProperties();
     }

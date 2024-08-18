@@ -17,7 +17,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] private bool isPlayerDetected;
     [SerializeField] private float lastPlayerDetectedTime;
 
-    public float Health { get { return _health; } set { if (value > 0) _health = value; else _health = 0f; } }
+    public float Health { get { return _health; }
+        set { if (value > 0) _health = value; else _health = 0f; } }
+
     private float _health;
 
     private NavMeshAgent agent;
@@ -51,7 +53,7 @@ public class Enemy : MonoBehaviour
         }
 
         float distance = (transform.position - Player.Instance.transform.position).magnitude;
-        Ray ray = new Ray(transform.position, Player.Instance.transform.position + Vector3.up - transform.position);
+        Ray ray = new Ray(transform.position, Player.Instance.transform.position - transform.position);
         if (distance <= detectDistance)
         {
             if (Physics.Raycast(ray, out RaycastHit hit, 1000f, targetLayerMask))
@@ -71,7 +73,7 @@ public class Enemy : MonoBehaviour
             return;
 
         transform.rotation = Quaternion.Lerp(transform.rotation,
-            Quaternion.LookRotation(Player.Instance.transform.position + Vector3.up - transform.position), 
+            Quaternion.LookRotation(Player.Instance.transform.position - transform.position), 
             rotaionLerpK * Time.deltaTime);
 
         if (distance <= attackDistance)
