@@ -153,20 +153,13 @@ public class HUDManager : MonoBehaviour
             dialogueText.text = "";
             speakerText.text = line.speaker;
 
-            string skipKeyString = "";
-
-            if (line.skipKey == KeyCode.Mouse0)
-                skipKeyString = "LMB";
-            else
-                skipKeyString = line.skipKey.ToString();
-
-            skipText.text = "Skip:\n" + skipKeyString;
-
             char[] characters = line.text.ToCharArray();
 
             for (int i = 0; i < characters.Length; i++)
             {
                 canFastForwardDialogue = true;
+
+                skipText.text = "Skip:\n" + line.GetFastForwardKeyString();
 
                 dialogueText.text += characters[i];
 
@@ -187,6 +180,8 @@ public class HUDManager : MonoBehaviour
             }
 
             canSkipDialogue = true;
+
+            skipText.text = "Skip:\n" + line.GetSkipKeyString();
 
             while (!attemptedToSkipDialogue)
                 yield return new WaitForSeconds(0.1f);

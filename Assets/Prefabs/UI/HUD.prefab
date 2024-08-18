@@ -745,8 +745,10 @@ MonoBehaviour:
   exitButton: {fileID: 7576940942026532782}
   exitConfirmButton: {fileID: 6403016787875471946}
   exitBackButton: {fileID: 8241658852728506595}
-  dialoguePanel: {fileID: 0}
-  dialogueText: {fileID: 0}
+  dialoguePanel: {fileID: 8135072905158188136}
+  dialogueText: {fileID: 2913646665424860420}
+  speakerText: {fileID: 7890563981253025098}
+  skipText: {fileID: 7431080602704420075}
 --- !u!1 &4535849456647092178
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,17 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ConditionTrigger : MonoBehaviour
+public class ConditionTrigger : EventCondition
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private float triggerRadius;
+
+    private bool activated = false;
+
+    private void Update()
     {
-        
+        if (activated)
+            return;
+
+        float distance = (Player.Instance.Position - transform.position).magnitude;
+
+        if (distance <= triggerRadius)
+            activated = true;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Set()
     {
-        
+        activated = false;
+    }
+
+    public override bool Check()
+    {
+        return activated;
     }
 }

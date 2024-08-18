@@ -30,6 +30,9 @@ public class EventManager : MonoBehaviour
                 }
             }
 
+            foreach (EventCondition condition in e.conditions)
+                condition.Set();
+
             bool conditionsMet = false;
             while (!conditionsMet)
             {

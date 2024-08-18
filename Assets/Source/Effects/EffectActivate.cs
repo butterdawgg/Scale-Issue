@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EffectActivate : MonoBehaviour
+public class EffectActivate : EventEffect
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private GameObject activationTarget;
+
+    private void Awake()
     {
-        
+        activationTarget.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Perform()
     {
-        
+        activationTarget.SetActive(true);
     }
 }
