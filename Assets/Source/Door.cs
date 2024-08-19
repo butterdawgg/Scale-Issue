@@ -17,24 +17,24 @@ public class Door : MonoBehaviour
 
         if (isActive)
         {
-            childDoor.position = Vector3.Lerp(childDoor.position, Vector3.forward * 1.6f, lerpSpeed);
+            childDoor.localPosition = Vector3.Lerp(childDoor.localPosition, Vector3.forward * 1.6f, lerpSpeed);
 
-            if(Mathf.Round(childDoor.position.x * 10) / 10 == 1.5f)
+            if(Mathf.Round(childDoor.localPosition.z * 10) / 10 == 1.5f)
             {
                 finishedAnimation = true;
-                childDoor.position = new Vector3(0, 0, 1.6f);
+                childDoor.localPosition = new Vector3(0, 0, 1.6f);
                 GetComponent<MeshCollider>().enabled = false;
             }
         }
         else
         {
             GetComponent<MeshCollider>().enabled = true;
-            childDoor.position = Vector3.Lerp(childDoor.position, Vector3.zero, lerpSpeed);
+            childDoor.localPosition = Vector3.Lerp(childDoor.localPosition, Vector3.back * 0.1f, lerpSpeed);
 
-            if (Mathf.Round(childDoor.position.x * 10) / 10 == 0)
+            if (Mathf.Round(childDoor.localPosition.z * 10) / 10 == 0)
             {
                 finishedAnimation = true;
-                childDoor.position = Vector3.zero;
+                childDoor.localPosition = Vector3.zero;
             }
         }
     }
