@@ -41,7 +41,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4941194617396682004}
-  m_Mesh: {fileID: -3262789968867269347, guid: a9fde498417394748be055ab168490af, type: 3}
+  m_Mesh: {fileID: -4849707432539929570, guid: a9fde498417394748be055ab168490af, type: 3}
 --- !u!23 &4950667703729957626
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -63,7 +63,6 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 28af7785f9ae9594ebaa204c4f44aef3, type: 2}
-  - {fileID: 2100000, guid: 757ce165d96728949b70e184bd22fc3a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -106,7 +105,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: -3262789968867269347, guid: a9fde498417394748be055ab168490af, type: 3}
+  m_Mesh: {fileID: -4849707432539929570, guid: a9fde498417394748be055ab168490af, type: 3}
 --- !u!1 &9088535710380171463
 GameObject:
   m_ObjectHideFlags: 0
@@ -117,7 +116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3131507696605586148}
   m_Layer: 3
-  m_Name: Box
+  m_Name: Wall Cap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
