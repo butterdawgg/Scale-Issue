@@ -29,7 +29,7 @@ public class Door : MonoBehaviour
         else
         {
             GetComponent<MeshCollider>().enabled = true;
-            childDoor.localPosition = Vector3.Lerp(childDoor.localPosition, Vector3.back * 0.1f, lerpSpeed);
+            childDoor.localPosition = Vector3.Lerp(childDoor.localPosition, Vector3.back * 0.2f, lerpSpeed);
 
             if (Mathf.Round(childDoor.localPosition.z * 10) / 10 == 0)
             {
