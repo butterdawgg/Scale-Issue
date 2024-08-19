@@ -31,11 +31,10 @@ public class Player : MonoBehaviour
 
     //private bool isDead;
 
-    private CharacterController cc;
+    private Rigidbody rb;
     private Camera cam;
     private GunPlayer gun;
 
-    private Vector3 velocity;
     private float lookPitch;
 
     private void Awake()
@@ -47,7 +46,7 @@ public class Player : MonoBehaviour
 
         Health = maxHealth;
 
-        cc = GetComponent<CharacterController>();
+        rb = GetComponent<Rigidbody>();
 
         cam = GetComponentInChildren<Camera>();
 
@@ -86,10 +85,7 @@ public class Player : MonoBehaviour
 
         Vector3 targetVelocity = input.normalized * maxVelocity;
 
-        velocity = Vector3.Lerp(velocity, targetVelocity, velocityLerpK * Time.deltaTime);
-        velocity.y = 0f;
-
-        cc.Move(velocity * Time.deltaTime);
+        rb.velocity = Vector3.Lerp(rb.velocity, targetVelocity, velocityLerpK * Time.deltaTime);
     }
 
     private void ControlOrientation()
