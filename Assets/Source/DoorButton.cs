@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ButtonController : MonoBehaviour
+public class DoorButton : MonoBehaviour
 {
-    [SerializeField] private Door connectedDoor;
+    [SerializeField] private List<Door> connectedDoors;
     [SerializeField] private float interactionRadius;
     [SerializeField] private KeyCode interactionKey;
     [SerializeField] private bool isInteractable;
@@ -17,8 +17,11 @@ public class ButtonController : MonoBehaviour
         float distance = (Player.Instance.Position - transform.position).magnitude;
         if (distance <= interactionRadius && Input.GetKeyUp(interactionKey))
         {
-            //open \ close the door
-            connectedDoor.ToggleActive();
+            //open \ close the doors
+            foreach (Door connectedDoor in connectedDoors)
+            {
+                connectedDoor.ToggleActive();
+            }
         }
     }
 
