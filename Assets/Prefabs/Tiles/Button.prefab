@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3049677302133619019
+--- !u!1 &4941194617396682004
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,48 +8,47 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6396214037081585683}
-  - component: {fileID: 899118281876048693}
-  - component: {fileID: 944143390597966137}
-  - component: {fileID: 5213580694796094104}
-  - component: {fileID: 368415037257452777}
+  - component: {fileID: 6817593905110079989}
+  - component: {fileID: 4816624267241845993}
+  - component: {fileID: 4950667703729957626}
+  - component: {fileID: 6577317584373114522}
   m_Layer: 3
-  m_Name: Button
+  m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6396214037081585683
+--- !u!4 &6817593905110079989
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3049677302133619019}
+  m_GameObject: {fileID: 4941194617396682004}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 3131507696605586148}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &899118281876048693
+--- !u!33 &4816624267241845993
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3049677302133619019}
-  m_Mesh: {fileID: -5447036705194824928, guid: 16c91482d88e6fb498e5a3de6cd2482d, type: 3}
---- !u!23 &944143390597966137
+  m_GameObject: {fileID: 4941194617396682004}
+  m_Mesh: {fileID: -5447036705194824928, guid: a9fde498417394748be055ab168490af, type: 3}
+--- !u!23 &4950667703729957626
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3049677302133619019}
+  m_GameObject: {fileID: 4941194617396682004}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -63,8 +62,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b42899a6b35c28f4590668758c1f289d, type: 2}
-  - {fileID: 2100000, guid: a6fd35f5b87ba0e4b956a78ec09aa8d8, type: 2}
+  - {fileID: 2100000, guid: 28af7785f9ae9594ebaa204c4f44aef3, type: 2}
+  - {fileID: 2100000, guid: 44bb20de5c59efb4884049c11ef54b5e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -86,13 +85,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5213580694796094104
-BoxCollider:
+--- !u!64 &6577317584373114522
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3049677302133619019}
+  m_GameObject: {fileID: 4941194617396682004}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -104,22 +103,39 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.51039517, y: 1.4573188, z: 0.5}
-  m_Center: {x: 0.0051972866, y: 0.7284001, z: 0}
---- !u!114 &368415037257452777
-MonoBehaviour:
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5447036705194824928, guid: a9fde498417394748be055ab168490af, type: 3}
+--- !u!1 &9088535710380171463
+GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3049677302133619019}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f90e7cbb0b29fb14bbb48ed1f216e732, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  connectedDoor: {fileID: 0}
-  interactionRadius: 5
-  interactionKey: 102
-  isInteractable: 1
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3131507696605586148}
+  m_Layer: 3
+  m_Name: Button
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3131507696605586148
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9088535710380171463}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6817593905110079989}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
