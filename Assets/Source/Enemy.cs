@@ -8,12 +8,15 @@ public class Enemy : MonoBehaviour
 {
     [Header("Properties")]
     [SerializeField] private float maxHealth;
+    [SerializeField] private float damage;
     [SerializeField] private LayerMask targetLayerMask;
     [SerializeField] private float detectDistance;
     [SerializeField] private float attackDistance;
     [SerializeField] private float timeToForget;
     [SerializeField] private float rotaionLerpK;
+    [SerializeField] private AnimationClip attackAnimationClip;
     [Header("Debug")]
+    [SerializeField] private bool canAttack = true;
     [SerializeField] private bool isPlayerDetected;
     [SerializeField] private float lastPlayerDetectedTime;
 
@@ -80,12 +83,21 @@ public class Enemy : MonoBehaviour
         {
             //attack
             animator.SetTrigger("attack");
-            if(Physics.SphereCast(ray, 1f, out RaycastHit hit, attackDistance, targetLayerMask))
+            if(Physics.SphereCast(ray, 1f, out RaycastHit hit, attackDistance, targetLayerMask) && canAttack)
             {
                 Debug.Log("hit!");
+                StartCoroutine(PlayerAttackCoroutine());
+                Player.Instance.Health -= damage;
             }
         }
 
         agent.SetDestination(Player.Instance.transform.position);
+    }
+
+    private IEnumerator PlayerAttackCoroutine()
+    {
+        canAttack = false;
+        yield return new WaitForSeconds(attackAnimationClip.length);
+        canAttack = true;
     }
 }
