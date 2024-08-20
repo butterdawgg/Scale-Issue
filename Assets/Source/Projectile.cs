@@ -48,19 +48,18 @@ public class Projectile : MonoBehaviour
 
             if (isFriendly)
             {
-                try
+                Enemy enemy = hit.collider.gameObject.GetComponentInParent<Enemy>();
+
+                if (enemy != null)
                 {
-                    Enemy enemy = hit.collider.gameObject.GetComponentInParent<Enemy>();
                     enemy.Health -= damage;
-                }
-                catch (System.NullReferenceException)
-                {
-                    
+
+                    enemy.Aggro();
                 }
             }
             else
             {
-                if(hit.transform == Player.Instance.transform)
+                if (hit.transform == Player.Instance.transform)
                 {
                     Player.Instance.Health -= damage;
                 }

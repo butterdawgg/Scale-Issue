@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -26,16 +25,17 @@ public class Player : MonoBehaviour
     public Transform LookPivot { get; private set; }
     public Vector3 LookPoint { get; private set; }
     public Vector3 Position { get; private set; }
-    public bool IsDefeated { get; private set; }
     public bool IsActionLocked { get; set; }
 
-    //private bool isDead;
+    private bool isDead;
 
     private Rigidbody rb;
     private Camera cam;
     private GunPlayer gun;
+    private HUDManager hudManager;
 
     private float lookPitch;
+    private float lookYaw;
 
     private void Awake()
     {
@@ -51,13 +51,31 @@ public class Player : MonoBehaviour
         cam = GetComponentInChildren<Camera>();
 
         gun = GetComponentInChildren<GunPlayer>();
+
+        hudManager = GetComponentInChildren<HUDManager>();
         
         ControlProperties();
+
+        IsActionLocked = false;
     }
 
     private void Update()
     {
+        if (Health <= 0f)
+        {
+            isDead = true;
+
+            hudManager.OnDefeat();
+        }
+
+        if (isDead)
+            return;
+
         ControlProperties();
+
+        if (Time.timeScale <= 0f)
+            return;
+
         ControlMovement();
         ControlOrientation();
     }
@@ -96,8 +114,14 @@ public class Player : MonoBehaviour
         lookPitch -= mouseY * (mouseSensitivity * SerializeManager.GetMouseSensitivity());
         lookPitch = Mathf.Clamp(lookPitch, -80f, 80f);
 
+        lookYaw += mouseX * (mouseSensitivity * SerializeManager.GetMouseSensitivity());
+
         lookPivot.localRotation = Quaternion.Euler(lookPitch, 0f, 0f);
-        transform.Rotate(transform.up * mouseX *
-            (mouseSensitivity * SerializeManager.GetMouseSensitivity()));
+        rb.rotation = Quaternion.Euler(0f, lookYaw, 0f);
+    }
+
+    public void Warp(Vector3 position)
+    {
+        transform.position = position;
     }
 }

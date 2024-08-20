@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4816624267241845993}
   - component: {fileID: 4950667703729957626}
   - component: {fileID: 6577317584373114522}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3131507696605586148}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Ceiling
   m_TagString: Untagged
   m_Icon: {fileID: 0}

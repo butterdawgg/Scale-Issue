@@ -11,6 +11,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float damage;
     [SerializeField] private LayerMask targetLayerMask;
     [SerializeField] private float detectDistance;
+    [SerializeField] private float attackDamage;
+    [SerializeField] private float attackDelay;
+    [SerializeField] private float attackDuration;
     [SerializeField] private float attackDistance;
     [SerializeField] private float timeToForget;
     [SerializeField] private float rotaionLerpK;
@@ -29,6 +32,7 @@ public class Enemy : MonoBehaviour
     private Animator animator;
 
     private bool isDead;
+    private bool isAttacking;
 
     private void Awake()
     {
@@ -55,7 +59,9 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        float distance = (transform.position - Player.Instance.transform.position).magnitude;
+        float distance = Vector3.ProjectOnPlane(Player.Instance.Position - transform.position,
+            Vector3.up).magnitude;
+
         Ray ray = new Ray(transform.position, Player.Instance.transform.position - transform.position);
         if (distance <= detectDistance)
         {
@@ -79,25 +85,40 @@ public class Enemy : MonoBehaviour
             Quaternion.LookRotation(Player.Instance.transform.position - transform.position), 
             rotaionLerpK * Time.deltaTime);
 
-        if (distance <= attackDistance)
+        if (distance <= attackDistance && !isAttacking)
         {
-            //attack
-            animator.SetTrigger("attack");
-            if(Physics.SphereCast(ray, 1f, out RaycastHit hit, attackDistance, targetLayerMask) && canAttack)
-            {
-                Debug.Log("hit!");
-                StartCoroutine(PlayerAttackCoroutine());
-                Player.Instance.Health -= damage;
-            }
+            StartCoroutine(AttackCoroutine());
         }
 
         agent.SetDestination(Player.Instance.transform.position);
     }
 
-    private IEnumerator PlayerAttackCoroutine()
+    public void Aggro()
     {
-        canAttack = false;
-        yield return new WaitForSeconds(attackAnimationClip.length);
-        canAttack = true;
+        isPlayerDetected = true;
+        lastPlayerDetectedTime = Time.time;
+    }
+
+    private IEnumerator AttackCoroutine()
+    {
+        isAttacking = true;
+
+        animator.SetTrigger("attack");
+
+        yield return new WaitForSeconds(attackDelay);
+
+        Vector3 direction = Vector3.ProjectOnPlane(Player.Instance.Position - transform.position,
+            Vector3.up);
+
+        Vector3 forward = Vector3.ProjectOnPlane(transform.forward, Vector3.up);
+
+        float distance = direction.magnitude;
+
+        if (distance <= attackDistance && Vector3.Angle(direction, forward) < 5f)
+            Player.Instance.Health -= attackDamage;
+
+        yield return new WaitForSeconds(attackDuration);
+
+        isAttacking = false;
     }
 }

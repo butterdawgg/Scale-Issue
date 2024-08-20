@@ -2,13 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class EventDialogue
+public class EventDialogue : Event
 {
     public DialogueLine[] lines;
 
-    public float initialDelay;
-
+    [HideInInspector]
     public bool isPlayed;
 }
 

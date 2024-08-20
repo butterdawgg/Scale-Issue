@@ -14,6 +14,8 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     [SerializeField] private Color defaultTextColor = Color.gray;
     [SerializeField] private Color highlightedTextColor = Color.white;
 
+    public bool IsSelectable { get; set; } = true;
+
     private TextMeshProUGUI text;
     private Button button;
 
@@ -28,6 +30,15 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     private void Update()
     {
+        if (!IsSelectable)
+        {
+            text.text = defaultText;
+            text.fontSize = defaultFontSize;
+            text.color = defaultTextColor;
+
+            return;
+        }
+
         if (isMouseOver)
         {
             text.text = highlightedText;
@@ -45,6 +56,9 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public void OnPointerEnter(PointerEventData pointerEventData)
     {
         isMouseOver = true;
+
+        if (!IsSelectable)
+            return;
 
         AudioManager.Instance.PlaySound("ButtonHover");
     }

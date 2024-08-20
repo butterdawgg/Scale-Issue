@@ -3,11 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Event
+public abstract class Event : MonoBehaviour
 {
-    public EventDialogue[] dialogues;
 
-    public EventCondition[] conditions;
-
-    public EventEffect[] effects;
 }
