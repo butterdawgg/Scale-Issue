@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Door : MonoBehaviour
@@ -79,10 +80,14 @@ public class Door : MonoBehaviour
             StartCoroutine(OpenCoroutine());
 
         isOpen = !isOpen;
+        AudioManager.Instance.PlaySound("DoorOpen");
     }
 
     public void SetLockedState(bool value)
     {
+        if (value != isLocked)
+            AudioManager.Instance.PlaySound("DoorUnlock");
+
         isLocked = value;
 
         lockedModel.SetActive(value);

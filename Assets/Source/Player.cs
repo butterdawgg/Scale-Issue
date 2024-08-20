@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -16,9 +17,17 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform lookPivot;
     [Header("Layer masks")]
     [SerializeField] private LayerMask lookLayerMask;
+    [Header("Sound Effects")]
+    [SerializeField] private float stepDistance;
+    [SerializeField] private float lowHealthThreshhold;
 
     public static Player Instance { get; private set; }
-    public float Health { get { return _health; } set { if (value > 0) _health = value; else _health = 0f; } }
+    public float Health { get { return _health; } set { if (value > 0) { 
+                if (value < _health) AudioManager.Instance.PlaySound("Grunt" + UnityEngine.Random.Range(1, 5).ToString());
+                if (value <= lowHealthThreshhold) AudioManager.Instance.PlaySound("LowHealth");
+                _health = value;
+            } 
+            else _health = 0f; } }
     private float _health;
     public float MaxHealth { get { return maxHealth; } }
     public Camera Camera { get; private set; }
@@ -36,6 +45,9 @@ public class Player : MonoBehaviour
 
     private float lookPitch;
     private float lookYaw;
+
+    private float currentStepDistance;
+    private bool currentSteppingLeg = false;
 
     private void Awake()
     {
@@ -75,6 +87,18 @@ public class Player : MonoBehaviour
 
         if (Time.timeScale <= 0f)
             return;
+
+        currentStepDistance += rb.velocity.magnitude * Time.deltaTime;
+        if(currentStepDistance >= stepDistance)
+        {
+            currentStepDistance = 0;
+            if (!currentSteppingLeg)
+                AudioManager.Instance.PlaySound("Footstep1");
+            else
+                AudioManager.Instance.PlaySound("Footstep2");
+
+            currentSteppingLeg = !currentSteppingLeg;
+        }
 
         ControlMovement();
         ControlOrientation();

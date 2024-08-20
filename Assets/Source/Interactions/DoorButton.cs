@@ -25,5 +25,6 @@ public class DoorButton : Interaction
         {
             door.Toggle();
         }
+        AudioManager.Instance.PlaySound("LevelButtonClick");
     }
 }
