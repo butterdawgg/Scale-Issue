@@ -121,7 +121,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6003524208546946144}
   - component: {fileID: 944708188777828961}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: InteractionCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -336,7 +336,7 @@ MonoBehaviour:
   interactionDistance: 4
   interactionLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
 --- !u!114 &4449997481793253474
 MonoBehaviour:
   m_ObjectHideFlags: 0

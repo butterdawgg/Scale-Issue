@@ -318,7 +318,7 @@ PrefabInstance:
         type: 3}
       propertyPath: interactions.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 7952149688665535876}
     - target: {fileID: 3131507696605586148, guid: 295901dc16373014c86a4545415eb702,
         type: 3}
       propertyPath: m_LocalScale.x

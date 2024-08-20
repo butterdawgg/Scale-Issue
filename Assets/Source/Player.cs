@@ -157,7 +157,7 @@ public class Player : MonoBehaviour
     private IEnumerator ShakeCoroutine(float amplitude, float duration)
     {
         float t = 0f;
-        float dt = 0.05f;
+        float dt = 0.01f;
 
         while (t < duration)
         {

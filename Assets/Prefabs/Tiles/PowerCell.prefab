@@ -261,6 +261,7 @@ GameObject:
   - component: {fileID: 2491546856696887262}
   - component: {fileID: 3028958109337503936}
   - component: {fileID: 1684978279218636527}
+  - component: {fileID: 8999099262700799357}
   m_Layer: 3
   m_Name: PowerCell
   m_TagString: Untagged
@@ -302,6 +303,7 @@ MonoBehaviour:
   interactions:
   - {fileID: 3028958109337503936}
   - {fileID: 1684978279218636527}
+  - {fileID: 8999099262700799357}
   interactionPoint: {fileID: 397667072328711820}
   interactionDistance: 2
   interactionLayerMask:
@@ -333,3 +335,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2403fff4dcccf247a62b01bcf2993a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8999099262700799357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9088535710380171463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5d64a4a4a76d4340ac2b790c9d2c535, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundName: BatteryPickup

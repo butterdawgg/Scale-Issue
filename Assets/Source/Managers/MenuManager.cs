@@ -76,6 +76,11 @@ public class MenuManager : MonoBehaviour
         SerializeManager.SetCheckpointEventDepth(0);
         SerializeManager.SetCheckpointPlayerPosition(Vector3.up);
 
+        for (int i = 0; i < 100; i++)
+        {
+            SerializeManager.SetEnemyDefeatedStatus(i, false);
+        }
+
         SceneManager.LoadScene(1);
     }
 
