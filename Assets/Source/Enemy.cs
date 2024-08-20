@@ -117,11 +117,11 @@ public class Enemy : MonoBehaviour
 
         float distance = direction.magnitude;
 
-        if (distance <= attackDistance && Vector3.Angle(direction, forward) < 5f)
+        if (distance <= attackDistance && Vector3.Angle(direction, forward) < 15f)
         {
             Player.Instance.Health -= attackDamage;
 
-            Player.Instance.ShakeCamera(0.1f, 0.2f);
+            Player.Instance.ShakeCamera(0.33f, 0.01f);
         }
 
         yield return new WaitForSeconds(attackDuration);

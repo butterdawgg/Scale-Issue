@@ -110,7 +110,7 @@ MonoBehaviour:
   attackDuration: 0.85
   attackDistance: 2
   timeToForget: 2
-  rotaionLerpK: 20
+  rotaionLerpK: 100
 --- !u!1001 &5824885164981900393
 PrefabInstance:
   m_ObjectHideFlags: 0

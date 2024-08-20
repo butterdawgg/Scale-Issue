@@ -37,7 +37,7 @@ public class HUDManager : MonoBehaviour
     [SerializeField] private GameObject noteWindow;
     [SerializeField] private TextMeshProUGUI noteText;
     [Header("Interactions")]
-    [SerializeField] private TextMeshProUGUI interactText;
+    [SerializeField] private GameObject interactPanel;
 
     public bool IsPaused { get; private set; } = false;
 
@@ -71,7 +71,7 @@ public class HUDManager : MonoBehaviour
 
         dialoguePanel.SetActive(false);
         noteWindow.SetActive(false);
-        interactText.gameObject.SetActive(false);
+        interactPanel.SetActive(false);
 
         settingsButton.onClick.AddListener(OnSettingsButtonClick);
         settingsBackButton.onClick.AddListener(OnSettingsBackButtonClick);
@@ -103,10 +103,10 @@ public class HUDManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape) && canCloseNote)
             attemptedToCloseNote = true;
 
-        interactText.gameObject.SetActive(visibleInteractables.Count > 0);
+        interactPanel.SetActive(visibleInteractables.Count > 0);
 
-        if (Player.Instance.IsActionLocked && interactText.gameObject.activeSelf)
-            interactText.gameObject.SetActive(false);
+        if (Player.Instance.IsActionLocked && interactPanel.activeSelf)
+            interactPanel.SetActive(false);
     }
 
     private void Pause()
@@ -244,6 +244,8 @@ public class HUDManager : MonoBehaviour
                 skipText.text = "Skip:\n" + line.GetFastForwardKeyString();
 
                 dialogueText.text += characters[i];
+
+                AudioManager.Instance.PlaySound("Text1");
 
                 yield return new WaitForSeconds(0.05f);
 
