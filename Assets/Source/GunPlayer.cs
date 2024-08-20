@@ -40,7 +40,14 @@ public class GunPlayer : MonoBehaviour
             return;
 
         if (Input.GetKeyUp(KeyCode.T))
+        {
             isLit = !isLit;
+
+            if (isLit)
+                AudioManager.Instance.PlaySound("FlashlightOn");
+            else
+                AudioManager.Instance.PlaySound("FlashlightOff");
+        }
 
         litModel.SetActive(isLit);
         unlitModel.SetActive(!isLit);
@@ -82,6 +89,7 @@ public class GunPlayer : MonoBehaviour
     protected void Shoot()
     {
         StartCoroutine(ShootCoroutine());
+        AudioManager.Instance.PlaySound("BulletShoot");
     }
 
     private IEnumerator ShootCoroutine()
