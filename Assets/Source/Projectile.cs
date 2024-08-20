@@ -53,9 +53,12 @@ public class Projectile : MonoBehaviour
                 if (enemy != null)
                 {
                     enemy.Health -= damage;
+                    AudioManager.Instance.PlaySound("HitFlesh");
 
                     enemy.Aggro();
                 }
+                else
+                    AudioManager.Instance.PlaySound("HitMetal" + Random.Range(1, 5).ToString());
             }
             else
             {

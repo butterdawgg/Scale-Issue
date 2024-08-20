@@ -22,6 +22,7 @@ public class Enemy : MonoBehaviour
 
     public int ID { get; set; }
 
+
     public float Health { get { return _health; }
         set { if (value > 0) _health = value; else _health = 0f; } }
 
@@ -105,6 +106,7 @@ public class Enemy : MonoBehaviour
         isAttacking = true;
 
         animator.SetTrigger("attack");
+        AudioManager.Instance.PlaySound("EnemyAttack");
 
         yield return new WaitForSeconds(attackDelay);
 

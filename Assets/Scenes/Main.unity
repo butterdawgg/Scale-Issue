@@ -8635,7 +8635,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.2
+  m_Intensity: 0.3
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -36720,6 +36720,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4373933480254698746, guid: 9ed3723739b98134089a8fb20d5905a4,
+        type: 3}
+      propertyPath: stepDistance
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4373933480254698746, guid: 9ed3723739b98134089a8fb20d5905a4,
+        type: 3}
+      propertyPath: lowHealthThreshhold
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5308565121690039803, guid: 9ed3723739b98134089a8fb20d5905a4,
         type: 3}
@@ -114104,6 +114114,38 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2146191473}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &543450652051242863
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132147590604245}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -19, y: 24, z: 36}
+  m_LocalScale: {x: 1, y: 0.6978596, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6402859388750539258}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &919132147590604245
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 543450652051242863}
+  m_Layer: 0
+  m_Name: Crater
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!114 &1154597187658950369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114125,27 +114167,173 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 89ae561daef3c4f41a0bf24fdd0e3ea6, type: 3}
     volume: 0.25
     source: {fileID: 0}
+  - name: BulletShoot
+    clip: {fileID: 8300000, guid: 0601f24b760cc1442a59bcb4de883248, type: 3}
+    volume: 0.3
+    source: {fileID: 0}
+  - name: LevelButtonClick
+    clip: {fileID: 8300000, guid: a9271063d8605bd4d9c2281db8d02b17, type: 3}
+    volume: 0.3
+    source: {fileID: 0}
+  - name: BatteryPickup
+    clip: {fileID: 8300000, guid: e2d334609b63ad54c800358e65d7c2dc, type: 3}
+    volume: 0.3
+    source: {fileID: 0}
+  - name: DoorOpen
+    clip: {fileID: 8300000, guid: dd541dbbd264fc2419f251882aa9865a, type: 3}
+    volume: 0.3
+    source: {fileID: 0}
+  - name: DoorUnlock
+    clip: {fileID: 8300000, guid: 2ad43aa22488c3e4f9ba77b0d58e9fd5, type: 3}
+    volume: 0.3
+    source: {fileID: 0}
+  - name: EnemyAttack
+    clip: {fileID: 8300000, guid: c16fc05718c8d4c4cb132e316a4bf876, type: 3}
+    volume: 0.3
+    source: {fileID: 0}
+  - name: Explosion
+    clip: {fileID: 8300000, guid: 3c7c21f6a9e458240b023235677e03bb, type: 3}
+    volume: 0.3
+    source: {fileID: 0}
+  - name: FlashlightOff
+    clip: {fileID: 8300000, guid: b217bd850cd15024fb5d1a31a02f413e, type: 3}
+    volume: 0.3
+    source: {fileID: 0}
+  - name: FlashlightOn
+    clip: {fileID: 8300000, guid: f743504e9e15e764892083f3bf0b3405, type: 3}
+    volume: 0.3
+    source: {fileID: 0}
+  - name: Footstep1
+    clip: {fileID: 8300000, guid: 4e458dbf854a31446b0f80886741c99b, type: 3}
+    volume: 0.5
+    source: {fileID: 0}
+  - name: Footstep2
+    clip: {fileID: 8300000, guid: 122144f011c286f46b4e0607ad6f2ed9, type: 3}
+    volume: 0.5
+    source: {fileID: 0}
+  - name: GeneratorFail
+    clip: {fileID: 8300000, guid: 9f32c3a822b102d43b1e6973d67bfc5b, type: 3}
+    volume: 0.3
+    source: {fileID: 0}
+  - name: Grunt1
+    clip: {fileID: 8300000, guid: 7611bab58a2f7a14292e42343913fd3a, type: 3}
+    volume: 0.3
+    source: {fileID: 0}
+  - name: Grunt2
+    clip: {fileID: 8300000, guid: 8fe843e3016761a41af1914d39f70091, type: 3}
+    volume: 0.3
+    source: {fileID: 0}
+  - name: Grunt3
+    clip: {fileID: 8300000, guid: 28e14ef7470a9fc46bfffcb8305ddaa9, type: 3}
+    volume: 0.3
+    source: {fileID: 0}
+  - name: Grunt4
+    clip: {fileID: 8300000, guid: 888eb73a885056b4891c347edc144963, type: 3}
+    volume: 0.3
+    source: {fileID: 0}
+  - name: HitFlesh
+    clip: {fileID: 8300000, guid: 039890035919ba441b78ec153ff57eb0, type: 3}
+    volume: 0.3
+    source: {fileID: 0}
+  - name: HitMetal1
+    clip: {fileID: 8300000, guid: 8a8335adfd894e944ae091c8feeb17e3, type: 3}
+    volume: 0.1
+    source: {fileID: 0}
+  - name: HitMetal2
+    clip: {fileID: 8300000, guid: 76cc48cc6932ebf4e9a0f420d1872a8c, type: 3}
+    volume: 0.1
+    source: {fileID: 0}
+  - name: HitMetal3
+    clip: {fileID: 8300000, guid: 16433b2adea83c04ab5f158bff9d8ba5, type: 3}
+    volume: 0.1
+    source: {fileID: 0}
+  - name: HitMetal4
+    clip: {fileID: 8300000, guid: 886d0ec83ec3b97498a4557f512c9fd1, type: 3}
+    volume: 0.1
+    source: {fileID: 0}
+  - name: LowHealth
+    clip: {fileID: 8300000, guid: 26f76c7f723b39d4b8f4fee7e0c3d9c0, type: 3}
+    volume: 0.3
+    source: {fileID: 0}
+  - name: PutBatteries
+    clip: {fileID: 8300000, guid: 3dd49541984cbb4499a44783e978df47, type: 3}
+    volume: 0.3
+    source: {fileID: 0}
+  - name: RocketLanding
+    clip: {fileID: 8300000, guid: 4fb36c999332b8447b5f55a83d94f3e3, type: 3}
+    volume: 0.3
+    source: {fileID: 0}
+  - name: ShortCircuit
+    clip: {fileID: 8300000, guid: c797024340111b448be62408b51df298, type: 3}
+    volume: 0.3
+    source: {fileID: 0}
+  - name: SuddenSound
+    clip: {fileID: 8300000, guid: 39b115ea929b888478f6f7bd33d25afc, type: 3}
+    volume: 0.3
+    source: {fileID: 0}
   music:
   - name: soundtrack1
-    clip: {fileID: 8300000, guid: e344976cce8546d468d2bba37b3b765e, type: 3}
-    volume: 1
+    clip: {fileID: 8300000, guid: 84fa61de54879c24a80f3818d0051e6c, type: 3}
+    volume: 0.3
     source: {fileID: 0}
   - name: soundtrack2
-    clip: {fileID: 8300000, guid: 462bc1c7c3566654886fe20d87dd63c5, type: 3}
-    volume: 1
+    clip: {fileID: 8300000, guid: ef0688117a4e1f342ad6a3b6954127ee, type: 3}
+    volume: 0.3
     source: {fileID: 0}
   - name: soundtrack3
-    clip: {fileID: 8300000, guid: 0247427686c3d694c9f8b97ffea3deb9, type: 3}
-    volume: 1
+    clip: {fileID: 8300000, guid: 87f60b6b2d5ca0a45ad2253cdab1bb95, type: 3}
+    volume: 0.3
     source: {fileID: 0}
   - name: soundtrack4
-    clip: {fileID: 8300000, guid: b838e8f033dc59245923fd2a91281287, type: 3}
-    volume: 1
+    clip: {fileID: 8300000, guid: 5417a510150248d40bcb347b72f91c4e, type: 3}
+    volume: 0.3
     source: {fileID: 0}
   - name: soundtrack5
-    clip: {fileID: 8300000, guid: 537a1c8fab27667499739ee681445a15, type: 3}
-    volume: 1
+    clip: {fileID: 8300000, guid: db72015d207e8ba449f6c3ac5bcbc07f, type: 3}
+    volume: 0.3
     source: {fileID: 0}
+--- !u!23 &3742600456437016543
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6682673073979668803}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 80382981728444c458ecc25d0233d318, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!4 &5497072330028480669
 Transform:
   m_ObjectHideFlags: 0
@@ -114161,6 +114349,47 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &6402859388750539258
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6682673073979668803}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -36, y: -333.6036, z: 45.254597}
+  m_LocalScale: {x: 131942.58, y: 328246.5, z: 131942.58}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 543450652051242863}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6682673073979668803
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6402859388750539258}
+  - component: {fileID: 7194452671822281083}
+  - component: {fileID: 3742600456437016543}
+  m_Layer: 0
+  m_Name: Mesh
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!33 &7194452671822281083
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6682673073979668803}
+  m_Mesh: {fileID: -7912166791378137202, guid: 71aa76f21eb72514b8ecca381d8d4011, type: 3}
 --- !u!1 &7677492742636780793
 GameObject:
   m_ObjectHideFlags: 0
@@ -114189,3 +114418,4 @@ SceneRoots:
   - {fileID: 676342616}
   - {fileID: 828989281}
   - {fileID: 703700263}
+  - {fileID: 543450652051242863}
