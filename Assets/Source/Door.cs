@@ -4,44 +4,88 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    [SerializeField] private Transform childDoor;
-    [Range(0, 1)] [SerializeField] private float lerpSpeed;
+    [SerializeField] private Vector3 openedOffset;
+    [SerializeField] private float openTime;
+    [SerializeField] private GameObject lockedModel;
+    [SerializeField] private GameObject unlockedModel;
 
-    private bool isActive = false;
-    private bool finishedAnimation = true;
+    private Vector3 closedPosition;
+    private Vector3 openPosition;
 
-    private void Update()
+    private bool isOpen = false;
+    private bool canOpen = true;
+
+    private bool isLocked = false;
+
+    private void Awake()
     {
-        if (finishedAnimation)
-            return;
+        closedPosition = transform.position;
 
-        if (isActive)
-        {
-            childDoor.localPosition = Vector3.Lerp(childDoor.localPosition, Vector3.forward * 1.6f, lerpSpeed);
-
-            if(Mathf.Round(childDoor.localPosition.z * 10) / 10 == 1.5f)
-            {
-                finishedAnimation = true;
-                childDoor.localPosition = new Vector3(0, 0, 1.6f);
-                GetComponent<MeshCollider>().enabled = false;
-            }
-        }
-        else
-        {
-            GetComponent<MeshCollider>().enabled = true;
-            childDoor.localPosition = Vector3.Lerp(childDoor.localPosition, Vector3.back * 0.2f, lerpSpeed);
-
-            if (Mathf.Round(childDoor.localPosition.z * 10) / 10 == 0)
-            {
-                finishedAnimation = true;
-                childDoor.localPosition = Vector3.zero;
-            }
-        }
+        openPosition = closedPosition +
+            (transform.forward * openedOffset.z) +
+            (transform.right * openedOffset.x) +
+            (transform.up * openedOffset.y);
     }
 
-    public void ToggleActive()
+    private IEnumerator OpenCoroutine()
     {
-        isActive = !isActive;
-        finishedAnimation = false;
+        canOpen = false;
+
+        float t = 0f;
+        float dt = 0.01f;
+
+        while (t < 1f)
+        {
+            transform.position = Vector3.Lerp(closedPosition, openPosition, t);
+
+            t += dt;
+
+            yield return new WaitForSeconds(openTime * dt);
+        }
+
+        canOpen = true;
+    }
+
+    private IEnumerator CloseCoroutine()
+    {
+        canOpen = false;
+
+        float t = 0f;
+        float dt = 0.01f;
+
+        while (t < 1f)
+        {
+            transform.position = Vector3.Lerp(openPosition, closedPosition, t);
+
+            t += dt;
+
+            yield return new WaitForSeconds(openTime * dt);
+        }
+
+        canOpen = true;
+    }
+
+    public void Toggle()
+    {
+        if (isLocked)
+            return;
+
+        if (!canOpen)
+            return;
+
+        if (isOpen)
+            StartCoroutine(CloseCoroutine());
+        else
+            StartCoroutine(OpenCoroutine());
+
+        isOpen = !isOpen;
+    }
+
+    public void SetLockedState(bool value)
+    {
+        isLocked = value;
+
+        lockedModel.SetActive(value);
+        unlockedModel.SetActive(!value);
     }
 }

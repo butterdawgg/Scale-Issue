@@ -25,13 +25,26 @@ public class GunPlayer : MonoBehaviour
     [Header("Layer Masks")]
     [SerializeField] private LayerMask checkLayerMask;
     [SerializeField] private LayerMask projectileLayerMask;
+    [Header("Light")]
+    [SerializeField] private GameObject litModel;
+    [SerializeField] private GameObject unlitModel;
+    [SerializeField] private GameObject flashlight;
 
-    private bool isShooting;
+    private bool isShooting = false;
+
+    private bool isLit = false;
 
     private void Update()
     {
         if (Time.timeScale <= 0f)
             return;
+
+        if (Input.GetKeyUp(KeyCode.T))
+            isLit = !isLit;
+
+        litModel.SetActive(isLit);
+        unlitModel.SetActive(!isLit);
+        flashlight.SetActive(isLit);
 
         Vector3 checkPoint = Player.Instance.LookPivot.position;
         Vector3 checkDirection = Player.Instance.LookPivot.forward;

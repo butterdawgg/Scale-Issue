@@ -106,7 +106,7 @@ Camera:
   m_Depth: 4.29
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 223
+    m_Bits: 767
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -226,7 +226,7 @@ MonoBehaviour:
   lookPivot: {fileID: 6811259598677927651}
   lookLayerMask:
     serializedVersion: 2
-    m_Bits: 136
+    m_Bits: 648
 --- !u!54 &5726249732782903992
 Rigidbody:
   m_ObjectHideFlags: 0

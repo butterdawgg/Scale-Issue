@@ -4,18 +4,11 @@ using UnityEngine;
 
 public class EffectAnimate : EventEffect
 {
-    [SerializeField] private GameObject activationTarget;
-    [SerializeField] private string animationTrigger;
-
-    private Animator animator;
-
-    private void Awake()
-    {
-        animator = activationTarget.GetComponent<Animator>();
-    }
+    [SerializeField] private Animator target;
+    [SerializeField] private string trigger;
 
     public override void Perform()
     {
-        animator.SetTrigger(animationTrigger);
+        target.SetTrigger(trigger);
     }
 }

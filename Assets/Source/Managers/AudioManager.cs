@@ -46,7 +46,7 @@ public class AudioManager : MonoBehaviour
     {
         for (int i = 0; i < sounds.Length; i++)
         {
-            sounds[i].source.volume = sounds[i].volume * SerializeManager.GetSFXVolume() * SerializeManager.GetMusicVolume();
+            sounds[i].source.volume = sounds[i].volume * SerializeManager.GetSFXVolume() * SerializeManager.GetMasterVolume();
         }
 
         for (int i = 0; i < music.Length; i++)

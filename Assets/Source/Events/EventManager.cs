@@ -9,47 +9,71 @@ public class EventManager : MonoBehaviour
 
     private HUDManager hudManager;
 
-    private void Awake()
+    private int eventDepth = 0;
+
+    private void Start()
     {
         hudManager = FindFirstObjectByType<HUDManager>().GetComponent<HUDManager>();
+
+        Player.Instance.Warp(SerializeManager.GetCheckpointPlayerPosition());
+
+        eventDepth = SerializeManager.GetCheckpointEventDepth();
+
+        for (int i = 0; i < eventDepth + 1; i++)
+        {
+            EventEffect effect = events[i] as EventEffect;
+            if (effect != null)
+            {
+                effect.Perform();
+            }
+        }
 
         StartCoroutine(EventsCoroutine());
     }
 
     private IEnumerator EventsCoroutine()
     {
-        foreach (Event e in events)
+        for (int i = eventDepth; i < events.Length; i++)
         {
-            foreach (EventDialogue dialogue in e.dialogues)
+            EventDialogue dialogue = events[i] as EventDialogue;
+            if (dialogue != null)
             {
                 hudManager.PlayDialogue(dialogue);
 
                 while (!dialogue.isPlayed)
                 {
-                    yield return new WaitForSeconds(0.2f);
+                    yield return null;
                 }
             }
 
-            foreach (EventCondition condition in e.conditions)
-                condition.Set();
-
-            bool conditionsMet = false;
-            while (!conditionsMet)
+            EventCondition condition = events[i] as EventCondition;
+            if (condition != null)
             {
-                conditionsMet = true;
-
-                foreach (EventCondition condition in e.conditions)
+                while (!condition.Check())
                 {
-                    if (!condition.Check())
-                        conditionsMet = false;
+                    yield return null;
                 }
-
-                yield return new WaitForSeconds(0.2f);
             }
 
-            foreach (EventEffect effect in e.effects)
+            EventEffect effect = events[i] as EventEffect;
+            if (effect != null)
             {
                 effect.Perform();
+            }
+
+            EventDelay delay = events[i] as EventDelay;
+            if (delay != null)
+            {
+                yield return new WaitForSeconds(delay.delay);
+            }
+
+            eventDepth += eventDepth < events.Length - 1 ? 1 : 0;
+            SerializeManager.SetCheckpointEventDepth(eventDepth);
+            SerializeManager.SetCheckpointPlayerPosition(Player.Instance.Position);
+
+            if (i == events.Length - 1)
+            {
+                hudManager.OnVictory();
             }
         }
     }
