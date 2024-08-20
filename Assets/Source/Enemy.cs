@@ -8,7 +8,6 @@ public class Enemy : MonoBehaviour
 {
     [Header("Properties")]
     [SerializeField] private float maxHealth;
-    [SerializeField] private float damage;
     [SerializeField] private LayerMask targetLayerMask;
     [SerializeField] private float detectDistance;
     [SerializeField] private float attackDamage;
@@ -17,11 +16,11 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float attackDistance;
     [SerializeField] private float timeToForget;
     [SerializeField] private float rotaionLerpK;
-    [SerializeField] private AnimationClip attackAnimationClip;
-    [Header("Debug")]
-    [SerializeField] private bool canAttack = true;
-    [SerializeField] private bool isPlayerDetected;
-    [SerializeField] private float lastPlayerDetectedTime;
+
+    private bool isPlayerDetected;
+    private float lastPlayerDetectedTime;
+
+    public int ID { get; set; }
 
     public float Health { get { return _health; }
         set { if (value > 0) _health = value; else _health = 0f; } }
@@ -57,6 +56,8 @@ public class Enemy : MonoBehaviour
             {
                 Destroy(collider);
             }
+
+            SerializeManager.SetEnemyDefeatedStatus(ID, true);
         }
 
         float distance = Vector3.ProjectOnPlane(Player.Instance.Position - transform.position,
@@ -115,7 +116,11 @@ public class Enemy : MonoBehaviour
         float distance = direction.magnitude;
 
         if (distance <= attackDistance && Vector3.Angle(direction, forward) < 5f)
+        {
             Player.Instance.Health -= attackDamage;
+
+            Player.Instance.ShakeCamera(0.1f, 0.2f);
+        }
 
         yield return new WaitForSeconds(attackDuration);
 

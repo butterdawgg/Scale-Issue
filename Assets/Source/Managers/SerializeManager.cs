@@ -106,4 +106,23 @@ public static class SerializeManager
     {
         SetVector3("checkpoint_player_position", value);
     }
+
+    public static bool GetEnemyDefeatedStatus(int id)
+    {
+        string key = "enemy_defeated_" + id;
+        if (PlayerPrefs.HasKey(key))
+        {
+            return Convert.ToBoolean(PlayerPrefs.GetInt(key));
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public static void SetEnemyDefeatedStatus(int id, bool value)
+    {
+        string key = "enemy_defeated_" + id;
+        PlayerPrefs.SetInt(key, Convert.ToInt32(value));
+    }
 }

@@ -124,4 +124,28 @@ public class Player : MonoBehaviour
     {
         transform.position = position;
     }
+
+    public void ShakeCamera(float amplitude, float duration)
+    {
+        StartCoroutine(ShakeCoroutine(amplitude, duration));
+    }
+
+    private IEnumerator ShakeCoroutine(float amplitude, float duration)
+    {
+        float t = 0f;
+        float dt = 0.05f;
+
+        while (t < duration)
+        {
+            cam.transform.localPosition += new Vector3(
+                UnityEngine.Random.Range(-amplitude, amplitude),
+                UnityEngine.Random.Range(-amplitude, amplitude),
+                UnityEngine.Random.Range(-amplitude, amplitude));
+
+            t += dt;
+            yield return new WaitForSeconds(dt);
+        }
+
+        cam.transform.localPosition = Vector3.zero;
+    }
 }

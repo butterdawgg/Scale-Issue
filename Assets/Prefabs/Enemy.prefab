@@ -104,17 +104,13 @@ MonoBehaviour:
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 584
-  detectDistance: 10
+  detectDistance: 20
   attackDamage: 10
   attackDelay: 0.15
   attackDuration: 0.85
   attackDistance: 2
   timeToForget: 2
   rotaionLerpK: 20
-  attackAnimationClip: {fileID: 7400000, guid: 0964368bf1b883142b8cc249525dd2c8, type: 2}
-  canAttack: 1
-  isPlayerDetected: 0
-  lastPlayerDetectedTime: 0
 --- !u!1001 &5824885164981900393
 PrefabInstance:
   m_ObjectHideFlags: 0

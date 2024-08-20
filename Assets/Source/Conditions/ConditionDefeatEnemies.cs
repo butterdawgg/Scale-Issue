@@ -2,21 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ConditionInteract : EventCondition
+public class ConditionDefeatEnemies : EventCondition
 {
-    [SerializeField] private InteractionConditionSetter[] interactions;
+    private Enemy[] targets = new Enemy[0];
 
     private bool isMet = false;
 
-    private void Update()
+    void Update()
     {
+        if (targets.Length <= 0)
+            return;
+
         isMet = true;
 
-        foreach (var interaction in interactions)
+        foreach (Enemy target in targets)
         {
-            if (!interaction.Interacted)
+            if (target.Health > 0)
             {
                 isMet = false;
+
+                return;
             }
         }
     }
@@ -24,6 +29,8 @@ public class ConditionInteract : EventCondition
     public override void Set()
     {
         isMet = false;
+
+        targets = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
     }
 
     public override bool Check()
