@@ -4,5 +4,6 @@ using UnityEngine;
 
 public abstract class EventEffect : Event
 {
+    public bool performOnReload = true;
     public abstract void Perform();
 }

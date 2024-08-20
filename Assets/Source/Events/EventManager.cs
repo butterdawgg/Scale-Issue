@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EventManager : MonoBehaviour
 {
-    [SerializeField] private Event[] events;
+    private List<Event> events = new List<Event>();
 
     private HUDManager hudManager;
 
@@ -13,6 +13,16 @@ public class EventManager : MonoBehaviour
 
     private void Start()
     {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            GameObject eventObject = transform.GetChild(i).gameObject;
+
+            if (eventObject.TryGetComponent(out Event e))
+            {
+                events.Add(e);
+            }
+        }
+
         hudManager = FindFirstObjectByType<HUDManager>().GetComponent<HUDManager>();
 
         Player.Instance.Warp(SerializeManager.GetCheckpointPlayerPosition());
@@ -24,7 +34,8 @@ public class EventManager : MonoBehaviour
             EventEffect effect = events[i] as EventEffect;
             if (effect != null)
             {
-                effect.Perform();
+                if (effect.performOnReload)
+                    effect.Perform();
             }
         }
 
@@ -33,7 +44,7 @@ public class EventManager : MonoBehaviour
 
     private IEnumerator EventsCoroutine()
     {
-        for (int i = eventDepth; i < events.Length; i++)
+        for (int i = eventDepth; i < events.Count; i++)
         {
             EventDialogue dialogue = events[i] as EventDialogue;
             if (dialogue != null)
@@ -49,6 +60,8 @@ public class EventManager : MonoBehaviour
             EventCondition condition = events[i] as EventCondition;
             if (condition != null)
             {
+                condition.Set();
+
                 while (!condition.Check())
                 {
                     yield return null;
@@ -67,11 +80,11 @@ public class EventManager : MonoBehaviour
                 yield return new WaitForSeconds(delay.delay);
             }
 
-            eventDepth += eventDepth < events.Length - 1 ? 1 : 0;
+            eventDepth += eventDepth < events.Count - 1 ? 1 : 0;
             SerializeManager.SetCheckpointEventDepth(eventDepth);
             SerializeManager.SetCheckpointPlayerPosition(Player.Instance.Position);
 
-            if (i == events.Length - 1)
+            if (i == events.Count - 1)
             {
                 hudManager.OnVictory();
             }
