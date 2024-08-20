@@ -111,6 +111,8 @@ MonoBehaviour:
   attackDistance: 2
   timeToForget: 2
   rotaionLerpK: 20
+  attackAnimationClip: {fileID: 7400000, guid: 0964368bf1b883142b8cc249525dd2c8, type: 2}
+  canAttack: 1
   isPlayerDetected: 0
   lastPlayerDetectedTime: 0
 --- !u!1001 &5824885164981900393
